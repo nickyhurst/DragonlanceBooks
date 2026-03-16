@@ -24,8 +24,10 @@ export default function App() {
   const {
     category,
     setCategory,
-    onlyCollected,
-    setOnlyCollected,
+    collectionFilter,
+    setCollectionFilter,
+    //onlyCollected,
+    //setOnlyCollected,
     onlyHardcover,
     setOnlyHardcover,
     q,
@@ -50,7 +52,7 @@ export default function App() {
   useScrollToTopOnFilterChange({
     isMobile,
     targetRef: topRef,
-    deps: [category, onlyCollected, onlyHardcover],
+    deps: [category, collectionFilter, onlyHardcover],//onlyCollected
   });
 
   usePrefetchCoverImages(searched, {
@@ -68,10 +70,13 @@ export default function App() {
           <div className="m-0 p-0" ref={topRef} />
 
           <FiltersBar
+            isMobile={isMobile}
             category={category}
             setCategory={setCategory}
-            onlyCollected={onlyCollected}
-            setOnlyCollected={setOnlyCollected}
+            collectionFilter={collectionFilter}
+            setCollectionFilter={setCollectionFilter}
+            //onlyCollected={onlyCollected}
+            //setOnlyCollected={setOnlyCollected}
             onlyHardcover={onlyHardcover}
             setOnlyHardcover={setOnlyHardcover}
             q={q}

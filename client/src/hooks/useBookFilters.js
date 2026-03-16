@@ -5,7 +5,8 @@ const STORAGE_KEY = "dl_filters";
 
 export default function useBookFilters(books) {
   const [category, setCategory] = useState("books");
-  const [onlyCollected, setOnlyCollected] = useState(false);
+  //const [onlyCollected, setOnlyCollected] = useState(false);
+  const [collectionFilter, setCollectionFilter] = useState("all")
   const [onlyHardcover, setOnlyHardcover] = useState(false);
   const [q, setQ] = useState("");
   const [qLive, setQLive] = useState("");
@@ -17,7 +18,8 @@ export default function useBookFilters(books) {
     try {
       const s = JSON.parse(saved);
       if (s.category) setCategory(s.category);
-      if (typeof s.onlyCollected === "boolean") setOnlyCollected(s.onlyCollected);
+      //if (typeof s.onlyCollected === "boolean") setOnlyCollected(s.onlyCollected);
+      if (typeof s.collectionFilter === "string") setCollectionFilter(s.collectionFilter);
       if (typeof s.onlyHardcover === "boolean") setOnlyHardcover(s.onlyHardcover);
       if (typeof s.q === "string") setQ(s.q);
     } catch {
@@ -30,12 +32,13 @@ export default function useBookFilters(books) {
       STORAGE_KEY,
       JSON.stringify({
         category,
-        onlyCollected,
+        //onlyCollected,
+        collectionFilter,
         onlyHardcover,
         q,
       })
     );
-  }, [category, onlyCollected, onlyHardcover, q]);
+  }, [category, collectionFilter, onlyHardcover, q]);//onlyCollected
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -51,11 +54,19 @@ export default function useBookFilters(books) {
     if (category === "books") list = list.filter((b) => !isComic(b));
     if (category === "comics") list = list.filter((b) => isComic(b));
 
-    if (onlyCollected) list = list.filter(isCollected);
+    //if (onlyCollected) list = list.filter(isCollected);
+    if (collectionFilter === "collected") {
+      list = list.filter(isCollected);
+    }
+
+    if (collectionFilter === "uncollected") {
+      list = list.filter((b) => !isCollected(b));
+    }
+
     if (onlyHardcover) list = list.filter(isHardcover);
 
     return list;
-  }, [books, category, onlyCollected, onlyHardcover]);
+  }, [books, category, collectionFilter, onlyHardcover]); //onlyCollected,
 
   const searched = useMemo(() => {
     if (!qLive) return filtered;
@@ -81,8 +92,10 @@ export default function useBookFilters(books) {
   return {
     category,
     setCategory,
-    onlyCollected,
-    setOnlyCollected,
+    collectionFilter,
+    setCollectionFilter,
+    //onlyCollected,
+    //setOnlyCollected,
     onlyHardcover,
     setOnlyHardcover,
     q,
