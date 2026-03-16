@@ -7,12 +7,15 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+#Node
 node_modules
 dist
 dist-ssr
 *.local
 
 # Editor directories and files
+.env
+.env.*
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -23,13 +26,10 @@ dist-ssr
 *.sln
 *.sw?
 
-client/node_modules/
-client/dist/
+# OS Junk
+.DS_Store
+Thumbs.db
 
-server/node_modules/
-server/dist/
-server/.env
-
-node_modules/
-dist/
-.env
+#IDE
+.vscode/
+.idea/
