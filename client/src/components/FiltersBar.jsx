@@ -151,6 +151,15 @@ export default function FiltersBar({
               >
                 <i className="fa-solid fa-newspaper me-1" /> Comics
               </button>
+              <button
+                className={`btn btn-sm collection-btn-young ${
+                  category === "young" ? "active" : ""
+                }`}
+                onClick={() => handleCategoryChange("young")}
+                type="button"
+              >
+                <i className="fa-solid fa-baby me-1" /> YA
+              </button>
 
                 
               </div>

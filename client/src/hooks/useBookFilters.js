@@ -51,8 +51,18 @@ export default function useBookFilters(books) {
   const filtered = useMemo(() => {
     let list = books;
 
-    if (category === "books") list = list.filter((b) => !isComic(b));
+    if (category === "books") {
+      list = list.filter(
+        (b) => !isComic(b) &&
+          !String(b?.Series ?? "").toLowerCase().startsWith("young reader")
+      );
+    }
     if (category === "comics") list = list.filter((b) => isComic(b));
+    if (category === "young") {
+      list = list.filter((b) =>
+        String(b?.Series ?? "").toLowerCase().startsWith("young reader")
+      );
+    }
 
     //if (onlyCollected) list = list.filter(isCollected);
     if (collectionFilter === "collected") {
