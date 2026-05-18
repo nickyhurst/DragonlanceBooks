@@ -81,6 +81,10 @@ export default function FiltersBar({
                   <i className="fa-solid fa-newspaper text-category ms-1" />
                 )}
 
+                {category === "young" && (
+                  <i className="fa-solid fa-baby text-category ms-1" />
+                )}
+
                 {collectionFilter === "collected" && (
                   <i className="fa-solid fa-check text-success ms-1" />
                 )}
