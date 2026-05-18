@@ -47,7 +47,7 @@ export default function FiltersBar({
           <div className="filter-toolbar__brand">
             <img
               src="/Dragonlance1eLogoFull.webp"
-              className="img-fluid"
+              className="img-fluid no-animation"
               style={{ maxHeight: 70 }}
               alt="Dragonlance"
             />

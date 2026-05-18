@@ -348,6 +348,14 @@ button:focus-visible {
     0 0 8px rgba(120, 180, 255, 0.18);
 }
 
+.collection-filter-group .collection-btn-young.active {
+  background: linear-gradient(to bottom, #2f5f9e, #254c7f);
+  border-color: rgba(120, 180, 255, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 0 8px rgba(120, 180, 255, 0.18);
+}
+
 .collection-filter-group .collection-btn-books-all.active {
   background: linear-gradient(to bottom, #6b4f1d, #5a4116);
   border-color: #e4b74f;
@@ -534,9 +542,17 @@ button:focus-visible {
   object-fit: cover;
   transition: all 0.3s ease-in-out;
 }
+
 .img-fluid:hover {
   transform: scale(1.1);
   box-shadow: 0 0 10px #D4AF37, 0 0 20px #D4AF37, 0 0 40px #D4AF37;
+}
+.no-animation {
+  transition: none;
+}
+.no-animation:hover {
+  transform: scale(1);
+  box-shadow: none;
 }
 .modal-content {
   --bs-modal-bg: #242424;
